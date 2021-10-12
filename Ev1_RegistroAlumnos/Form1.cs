@@ -31,5 +31,11 @@ namespace Ev1_RegistroAlumnos
             FormCurso curso = new FormCurso();
             curso.Show();
         }
+
+        private void alumnoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormAlumno alumno = new FormAlumno();
+            alumno.Show();
+        }
     }
 }
