@@ -68,6 +68,7 @@ namespace Ev1_RegistroAlumnos
             this.cursoToolStripMenuItem.Name = "cursoToolStripMenuItem";
             this.cursoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.cursoToolStripMenuItem.Text = "Curso";
+            this.cursoToolStripMenuItem.Click += new System.EventHandler(this.cursoToolStripMenuItem_Click);
             // 
             // profJefeToolStripMenuItem
             // 

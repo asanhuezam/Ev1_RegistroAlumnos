@@ -121,9 +121,14 @@ namespace Ev1_RegistroAlumnos.Fomularios
                 }
                 else
                 {
-                    Modificar();
+                    var resultado = MessageBox.Show("¿Desea modificar al profesor " + txtNombres.Text + " " + txtApellidos.Text + " ?", "Modificar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (resultado == DialogResult.Yes)
+                    {
+                        Modificar();
+                    }
+                  
                 }
-                MessageBox.Show("EL registro se ha guardado con éxito");
+                MessageBox.Show("El registro se ha guardado con éxito!");
                 cargarProf();
                 Limpiar();
             }

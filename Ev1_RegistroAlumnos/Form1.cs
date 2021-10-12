@@ -20,9 +20,16 @@ namespace Ev1_RegistroAlumnos
 
         private void profJefeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            
             FormProfJefe prof = new FormProfJefe();
             prof.Show();
+        }
+
+        private void cursoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            FormCurso curso = new FormCurso();
+            curso.Show();
         }
     }
 }
