@@ -105,6 +105,7 @@ namespace Ev1_RegistroAlumnos.Fomularios
             this.txtLetra.Name = "txtLetra";
             this.txtLetra.Size = new System.Drawing.Size(201, 20);
             this.txtLetra.TabIndex = 6;
+            this.txtLetra.Leave += new System.EventHandler(this.txtLetra_Leave);
             // 
             // dgvCursos
             // 
@@ -127,6 +128,7 @@ namespace Ev1_RegistroAlumnos.Fomularios
             // 
             // btnEliminar
             // 
+            this.btnEliminar.Enabled = false;
             this.btnEliminar.Location = new System.Drawing.Point(606, 135);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 23);

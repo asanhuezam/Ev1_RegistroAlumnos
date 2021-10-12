@@ -30,13 +30,10 @@ namespace Ev1_RegistroAlumnos.Fomularios
                              select new
                              {
                                  id = p.id_prof,
-                                 Nombres = p.nombres,
-                                 Apellidos = p.apellidos,
-                                 Email = p.email,
-                                 Telefono = p.telefono
+                                 Nombres = p.nombres + " " + p.apellidos
                              }).ToList();
             cbProfe.DataSource = listaProf;
-            cbProfe.ValueMember = "id";           
+            cbProfe.ValueMember = "id";
             cbProfe.DisplayMember = "Nombres";
             cbProfe.SelectedIndex = -1;
         }
@@ -50,7 +47,7 @@ namespace Ev1_RegistroAlumnos.Fomularios
                                  c.id_prof,
                                  Nivel = c.nivel,
                                  Letra = c.letra,
-                                 Profesor = c.Prof_Jefe.nombres,
+                                 Profesor = c.Prof_Jefe.nombres + " " + c.Prof_Jefe.apellidos
                              }).ToList();
             dgvCursos.DataSource = listaCurso;
             dgvCursos.Columns[0].Visible = false;
@@ -103,7 +100,7 @@ namespace Ev1_RegistroAlumnos.Fomularios
         {
             if (idCurso > 0)
             {
-                var resultado = MessageBox.Show("¿Desea eliminar el curso: " + txtNivel.Text + " " + txtLetra.Text + "?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
+                var resultado = MessageBox.Show("¿Desea eliminar el curso: " + txtNivel.Text + "°" + txtLetra.Text + "?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
                 if (resultado == DialogResult.Yes)
                 {
                     Curso c = db.Curso.Find(idCurso);
@@ -150,9 +147,9 @@ namespace Ev1_RegistroAlumnos.Fomularios
         private void dgvCursos_MouseClick(object sender, MouseEventArgs e)
         {
             idCurso = int.Parse(dgvCursos.CurrentRow.Cells[0].Value.ToString());
-            txtNivel.Text = dgvCursos.CurrentRow.Cells[1].Value.ToString();
-            txtLetra.Text = dgvCursos.CurrentRow.Cells[2].Value.ToString();
-            cbProfe.SelectedValue = dgvCursos.CurrentRow.Cells[3].Value.ToString();
+            cbProfe.SelectedValue = int.Parse(dgvCursos.CurrentRow.Cells[1].Value.ToString());
+            txtNivel.Text = dgvCursos.CurrentRow.Cells[2].Value.ToString();
+            txtLetra.Text = dgvCursos.CurrentRow.Cells[3].Value.ToString();
 
             btnEliminar.Enabled = true;
         }
@@ -161,5 +158,28 @@ namespace Ev1_RegistroAlumnos.Fomularios
         {
             h.soloNumeros(e);
         }
+
+        private bool verificarCurso(string letra, string nivel)
+        {
+            bool result = false;
+            Curso curso = db.Curso.FirstOrDefault(c => (c.nivel.Equals(nivel) && c.letra.Equals(letra)) && c.id_curso != idCurso);
+            if (curso != null)
+            {
+                result = true;
+            }
+            return result;
+        }
+
+        /*private void txtLetra_Leave(object sender, EventArgs e)
+        {
+            if (txtLetra.Text.Trim() != "" && txtNivel.Text.Trim() != "")
+            {
+                if (verificarCurso(txtLetra.Text.Trim(), txtNivel.Text.Trim()))
+                {
+                    MessageBox.Show("La letra ingresada ya ha sido asignada a el nivel escogido");
+                    txtLetra.Text = "";
+                }
+            }
+        }*/
     }
 }
