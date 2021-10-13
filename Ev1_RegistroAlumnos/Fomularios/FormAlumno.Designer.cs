@@ -40,6 +40,13 @@ namespace Ev1_RegistroAlumnos.Fomularios
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
+            this.txtRut = new System.Windows.Forms.TextBox();
+            this.txtDireccion = new System.Windows.Forms.TextBox();
+            this.lblDireccion = new System.Windows.Forms.Label();
+            this.lblRut = new System.Windows.Forms.Label();
+            this.lblAtras = new System.Windows.Forms.Label();
+            this.lblGuion = new System.Windows.Forms.Label();
+            this.txtVerificador = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlumnos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,7 +54,7 @@ namespace Ev1_RegistroAlumnos.Fomularios
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(290, 29);
+            this.label1.Location = new System.Drawing.Point(290, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(220, 29);
             this.label1.TabIndex = 0;
@@ -57,7 +64,7 @@ namespace Ev1_RegistroAlumnos.Fomularios
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(65, 88);
+            this.label2.Location = new System.Drawing.Point(65, 98);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(60, 16);
             this.label2.TabIndex = 1;
@@ -67,7 +74,7 @@ namespace Ev1_RegistroAlumnos.Fomularios
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(65, 134);
+            this.label3.Location = new System.Drawing.Point(65, 140);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(68, 16);
             this.label3.TabIndex = 2;
@@ -77,7 +84,7 @@ namespace Ev1_RegistroAlumnos.Fomularios
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(65, 179);
+            this.label4.Location = new System.Drawing.Point(65, 182);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(46, 16);
             this.label4.TabIndex = 3;
@@ -85,30 +92,31 @@ namespace Ev1_RegistroAlumnos.Fomularios
             // 
             // txtNom_A
             // 
-            this.txtNom_A.Location = new System.Drawing.Point(178, 87);
+            this.txtNom_A.Location = new System.Drawing.Point(178, 97);
             this.txtNom_A.Name = "txtNom_A";
             this.txtNom_A.Size = new System.Drawing.Size(352, 20);
             this.txtNom_A.TabIndex = 4;
             // 
             // txtApe_A
             // 
-            this.txtApe_A.Location = new System.Drawing.Point(178, 133);
+            this.txtApe_A.Location = new System.Drawing.Point(178, 139);
             this.txtApe_A.Name = "txtApe_A";
             this.txtApe_A.Size = new System.Drawing.Size(352, 20);
             this.txtApe_A.TabIndex = 5;
             // 
             // cbCurso
             // 
+            this.cbCurso.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCurso.FormattingEnabled = true;
-            this.cbCurso.Location = new System.Drawing.Point(178, 178);
+            this.cbCurso.Location = new System.Drawing.Point(178, 181);
             this.cbCurso.Name = "cbCurso";
-            this.cbCurso.Size = new System.Drawing.Size(208, 21);
+            this.cbCurso.Size = new System.Drawing.Size(352, 21);
             this.cbCurso.TabIndex = 6;
             // 
             // dgvAlumnos
             // 
             this.dgvAlumnos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAlumnos.Location = new System.Drawing.Point(68, 224);
+            this.dgvAlumnos.Location = new System.Drawing.Point(68, 259);
             this.dgvAlumnos.Name = "dgvAlumnos";
             this.dgvAlumnos.Size = new System.Drawing.Size(616, 181);
             this.dgvAlumnos.TabIndex = 7;
@@ -144,11 +152,81 @@ namespace Ev1_RegistroAlumnos.Fomularios
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
+            // txtRut
+            // 
+            this.txtRut.Location = new System.Drawing.Point(178, 60);
+            this.txtRut.Name = "txtRut";
+            this.txtRut.Size = new System.Drawing.Size(156, 20);
+            this.txtRut.TabIndex = 11;
+            this.txtRut.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRut_KeyPress);
+            this.txtRut.Leave += new System.EventHandler(this.txtRut_Leave);
+            // 
+            // txtDireccion
+            // 
+            this.txtDireccion.Location = new System.Drawing.Point(178, 217);
+            this.txtDireccion.Name = "txtDireccion";
+            this.txtDireccion.Size = new System.Drawing.Size(352, 20);
+            this.txtDireccion.TabIndex = 12;
+            // 
+            // lblDireccion
+            // 
+            this.lblDireccion.AutoSize = true;
+            this.lblDireccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDireccion.Location = new System.Drawing.Point(65, 221);
+            this.lblDireccion.Name = "lblDireccion";
+            this.lblDireccion.Size = new System.Drawing.Size(68, 16);
+            this.lblDireccion.TabIndex = 13;
+            this.lblDireccion.Text = "Direccion:";
+            // 
+            // lblRut
+            // 
+            this.lblRut.AutoSize = true;
+            this.lblRut.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRut.Location = new System.Drawing.Point(65, 60);
+            this.lblRut.Name = "lblRut";
+            this.lblRut.Size = new System.Drawing.Size(31, 16);
+            this.lblRut.TabIndex = 14;
+            this.lblRut.Text = "Rut:";
+            // 
+            // lblAtras
+            // 
+            this.lblAtras.AutoSize = true;
+            this.lblAtras.Location = new System.Drawing.Point(13, 13);
+            this.lblAtras.Name = "lblAtras";
+            this.lblAtras.Size = new System.Drawing.Size(52, 13);
+            this.lblAtras.TabIndex = 15;
+            this.lblAtras.Text = "Ir a Menu";
+            this.lblAtras.Click += new System.EventHandler(this.lblAtras_Click);
+            // 
+            // lblGuion
+            // 
+            this.lblGuion.AutoSize = true;
+            this.lblGuion.Location = new System.Drawing.Point(341, 63);
+            this.lblGuion.Name = "lblGuion";
+            this.lblGuion.Size = new System.Drawing.Size(10, 13);
+            this.lblGuion.TabIndex = 16;
+            this.lblGuion.Text = "-";
+            // 
+            // txtVerificador
+            // 
+            this.txtVerificador.Location = new System.Drawing.Point(358, 59);
+            this.txtVerificador.Name = "txtVerificador";
+            this.txtVerificador.Size = new System.Drawing.Size(30, 20);
+            this.txtVerificador.TabIndex = 17;
+            this.txtVerificador.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtVerificador_KeyPress);
+            // 
             // FormAlumno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(788, 451);
+            this.Controls.Add(this.txtVerificador);
+            this.Controls.Add(this.lblGuion);
+            this.Controls.Add(this.lblAtras);
+            this.Controls.Add(this.lblRut);
+            this.Controls.Add(this.lblDireccion);
+            this.Controls.Add(this.txtDireccion);
+            this.Controls.Add(this.txtRut);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnGuardar);
@@ -181,5 +259,12 @@ namespace Ev1_RegistroAlumnos.Fomularios
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.TextBox txtRut;
+        private System.Windows.Forms.TextBox txtDireccion;
+        private System.Windows.Forms.Label lblDireccion;
+        private System.Windows.Forms.Label lblRut;
+        private System.Windows.Forms.Label lblAtras;
+        private System.Windows.Forms.Label lblGuion;
+        private System.Windows.Forms.TextBox txtVerificador;
     }
 }

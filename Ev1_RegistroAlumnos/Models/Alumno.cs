@@ -15,8 +15,10 @@ namespace Ev1_RegistroAlumnos.Models
     public partial class Alumno
     {
         public int id_alumno { get; set; }
-        public string nombre { get; set; }
-        public string apellido { get; set; }
+        public string rut { get; set; }
+        public string nombres { get; set; }
+        public string apellidos { get; set; }
+        public string direccion { get; set; }
         public int id_curso { get; set; }
     
         public virtual Curso Curso { get; set; }

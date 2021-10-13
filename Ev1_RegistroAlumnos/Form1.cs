@@ -37,5 +37,26 @@ namespace Ev1_RegistroAlumnos
             FormAlumno alumno = new FormAlumno();
             alumno.Show();
         }
+
+        private void btnProfesor_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            FormProfJefe prof = new FormProfJefe();
+            prof.Show();
+        }
+
+        private void btnCurso_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            FormCurso curso = new FormCurso();
+            curso.Show();
+        }
+
+        private void btnAlumno_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            FormAlumno alumno = new FormAlumno();
+            alumno.Show();
+        }
     }
 }

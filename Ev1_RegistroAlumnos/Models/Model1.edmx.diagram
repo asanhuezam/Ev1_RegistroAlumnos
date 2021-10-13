@@ -4,13 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f2b3c75005324431bc885e5f26326ed2" Name="Diagram1">
-        <EntityTypeShape EntityType="registroColegioModel.Alumno" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="registroColegioModel.Curso" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="registroColegioModel.Prof_Jefe" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="registroColegioModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <AssociationConnector Association="registroColegioModel.FK_Alumno_Curso" ManuallyRouted="false" />
-        <AssociationConnector Association="registroColegioModel.FK_Curso_Prof_Jefe" ManuallyRouted="false" />
+      <Diagram DiagramId="56f865f01bd043b9a3aa3bcfac3f3b98" Name="Diagram1">
+        <EntityTypeShape EntityType="registroAlumnosModel.Alumno" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="registroAlumnosModel.Curso" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="registroAlumnosModel.Prof_Jefe" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="registroAlumnosModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="registroAlumnosModel.FK_Alumno_Curso" ManuallyRouted="false" />
+        <AssociationConnector Association="registroAlumnosModel.FK_Curso_Prof_Jefe" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

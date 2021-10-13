@@ -13,10 +13,10 @@ namespace Ev1_RegistroAlumnos.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class registroColegioEntities : DbContext
+    public partial class registroAlumnosEntities : DbContext
     {
-        public registroColegioEntities()
-            : base("name=registroColegioEntities")
+        public registroAlumnosEntities()
+            : base("name=registroAlumnosEntities")
         {
         }
     

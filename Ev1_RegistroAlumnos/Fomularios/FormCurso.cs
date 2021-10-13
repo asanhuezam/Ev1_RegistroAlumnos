@@ -13,7 +13,7 @@ namespace Ev1_RegistroAlumnos.Fomularios
 {
     public partial class FormCurso : Form
     {
-        private registroColegioEntities db = new registroColegioEntities();
+        private registroAlumnosEntities db = new registroAlumnosEntities();
         int idCurso = 0;
         private Helpers h = new Helpers();
 
@@ -22,6 +22,8 @@ namespace Ev1_RegistroAlumnos.Fomularios
             InitializeComponent();
             cargarProf();
             cargarCurso();
+            txtLetra.MaxLength = 1;
+            txtNivel.MaxLength = 1;
         }
 
         private void cargarProf()
@@ -30,11 +32,11 @@ namespace Ev1_RegistroAlumnos.Fomularios
                              select new
                              {
                                  id = p.id_prof,
-                                 Nombres = p.nombres + " " + p.apellidos
+                                 Datos = p.rut + " - " + p.nombres + " " + p.apellidos
                              }).ToList();
             cbProfe.DataSource = listaProf;
             cbProfe.ValueMember = "id";
-            cbProfe.DisplayMember = "Nombres";
+            cbProfe.DisplayMember = "Datos";
             cbProfe.SelectedIndex = -1;
         }
 
@@ -47,7 +49,8 @@ namespace Ev1_RegistroAlumnos.Fomularios
                                  c.id_prof,
                                  Nivel = c.nivel,
                                  Letra = c.letra,
-                                 Profesor = c.Prof_Jefe.nombres + " " + c.Prof_Jefe.apellidos
+                                 Profesor = c.Prof_Jefe.nombres + " " + c.Prof_Jefe.apellidos,
+                                 Rut_profesor = c.Prof_Jefe.rut
                              }).ToList();
             dgvCursos.DataSource = listaCurso;
             dgvCursos.Columns[0].Visible = false;
@@ -88,9 +91,9 @@ namespace Ev1_RegistroAlumnos.Fomularios
         {
             string mensaje = "";
             if (string.IsNullOrEmpty(txtNivel.Text.Trim()))
-                mensaje = "Ingrese al menos un Nivel \n";
+                mensaje = "Ingrese un Nivel \n";
             if (string.IsNullOrEmpty(txtLetra.Text.Trim()))
-                mensaje += "Ingrese al menos una Letra \n";
+                mensaje += "Ingrese una Letra \n";
             if (string.IsNullOrEmpty(cbProfe.Text.Trim()))
                 mensaje += "Debe seleccionar un Profesor \n";
             return mensaje;
@@ -100,7 +103,8 @@ namespace Ev1_RegistroAlumnos.Fomularios
         {
             if (idCurso > 0)
             {
-                var resultado = MessageBox.Show("¿Desea eliminar el curso: " + txtNivel.Text + "°" + txtLetra.Text + "?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
+                var resultado = MessageBox.Show("¿Desea eliminar el curso: " + txtNivel.Text + "°" 
+                    + txtLetra.Text + "?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
                 if (resultado == DialogResult.Yes)
                 {
                     Curso c = db.Curso.Find(idCurso);
@@ -123,7 +127,31 @@ namespace Ev1_RegistroAlumnos.Fomularios
             {
                 if (idCurso == 0)
                 {
+                    if (txtLetra.Text.Trim() != "" && txtNivel.Text.Trim() != "")
+                    {
+                        if (verficarNivel(int.Parse(txtNivel.Text.Trim())))
+                        {
+                            if (verficarLetra(txtLetra.Text.Trim()))
+                            {
+                                MessageBox.Show("Ya se ha registrado este curso. Intente otro nivel o letra");
+                                txtNivel.Text = "";
+                                txtLetra.Text = "";
+                                cbProfe.SelectedIndex = -1;
+                            }
+                        }
+                    }
+                    if(cbProfe.Text.Trim() != "")
+                    {
+                        if (verficarProfesor(cbProfe.Text))
+                        {
+                            MessageBox.Show("Este profesor ya tiene asignado un curso");
+                            cbProfe.SelectedIndex = -1;
+                        }
+                    }
                     Guardar();
+                    MessageBox.Show("El curso se ha guardado con éxito!");
+                    Limpiar();
+                    
                 }
                 else
                 {
@@ -133,9 +161,8 @@ namespace Ev1_RegistroAlumnos.Fomularios
                         Modificar();
                     }
                 }
-                MessageBox.Show("El registro se ha guardado con éxito!");
                 cargarCurso();
-                Limpiar();
+                
             }
         }
 
@@ -159,10 +186,17 @@ namespace Ev1_RegistroAlumnos.Fomularios
             h.soloNumeros(e);
         }
 
-        private bool verificarCurso(string letra, string nivel)
+        private void lblAtras_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Form1 form = new Form1();
+            form.Show();
+        }
+
+        private bool verficarLetra(string letra)
         {
             bool result = false;
-            Curso curso = db.Curso.FirstOrDefault(c => (c.nivel.Equals(nivel) && c.letra.Equals(letra)) && c.id_curso != idCurso);
+            Curso curso = db.Curso.FirstOrDefault(c => c.letra.Equals(letra) && c.id_curso != idCurso);
             if (curso != null)
             {
                 result = true;
@@ -170,16 +204,32 @@ namespace Ev1_RegistroAlumnos.Fomularios
             return result;
         }
 
-        /*private void txtLetra_Leave(object sender, EventArgs e)
+        private bool verficarNivel(int nivel)
         {
-            if (txtLetra.Text.Trim() != "" && txtNivel.Text.Trim() != "")
+            bool result = false;
+            Curso curso = db.Curso.FirstOrDefault(c => c.nivel.Equals(nivel) && c.id_curso != idCurso);
+            if (curso != null)
             {
-                if (verificarCurso(txtLetra.Text.Trim(), txtNivel.Text.Trim()))
-                {
-                    MessageBox.Show("La letra ingresada ya ha sido asignada a el nivel escogido");
-                    txtLetra.Text = "";
-                }
+                result = true;
             }
-        }*/
+            return result;
+        }
+
+        private bool verficarProfesor(string id)
+        {
+            bool result = false;
+            Curso curso = db.Curso.FirstOrDefault(c => (c.Prof_Jefe.rut + " - " +
+            c.Prof_Jefe.nombres + " " + c.Prof_Jefe.apellidos).Equals(id) && c.id_curso != idCurso);
+            if (curso != null)
+            {
+                result = true;
+            }
+            return result;
+        }
+
+        private void txtLetra_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            h.soloMayus(e);
+        }
     }
 }

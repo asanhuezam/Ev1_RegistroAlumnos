@@ -40,6 +40,7 @@ namespace Ev1_RegistroAlumnos.Fomularios
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
+            this.lblAtras = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCursos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -85,6 +86,7 @@ namespace Ev1_RegistroAlumnos.Fomularios
             // 
             // cbProfe
             // 
+            this.cbProfe.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbProfe.FormattingEnabled = true;
             this.cbProfe.Location = new System.Drawing.Point(186, 178);
             this.cbProfe.Name = "cbProfe";
@@ -105,7 +107,7 @@ namespace Ev1_RegistroAlumnos.Fomularios
             this.txtLetra.Name = "txtLetra";
             this.txtLetra.Size = new System.Drawing.Size(201, 20);
             this.txtLetra.TabIndex = 6;
-            
+            this.txtLetra.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLetra_KeyPress);
             // 
             // dgvCursos
             // 
@@ -147,11 +149,22 @@ namespace Ev1_RegistroAlumnos.Fomularios
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
+            // lblAtras
+            // 
+            this.lblAtras.AutoSize = true;
+            this.lblAtras.Location = new System.Drawing.Point(13, 13);
+            this.lblAtras.Name = "lblAtras";
+            this.lblAtras.Size = new System.Drawing.Size(52, 13);
+            this.lblAtras.TabIndex = 11;
+            this.lblAtras.Text = "Ir a Menu";
+            this.lblAtras.Click += new System.EventHandler(this.lblAtras_Click);
+            // 
             // FormCurso
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(753, 495);
+            this.Controls.Add(this.lblAtras);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnGuardar);
@@ -184,5 +197,6 @@ namespace Ev1_RegistroAlumnos.Fomularios
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.Label lblAtras;
     }
 }
